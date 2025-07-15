@@ -1,2 +1,0 @@
-# Netlify redirects file
-/flightclient/*    /flightclient/index.html   200
