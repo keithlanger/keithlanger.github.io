@@ -1,0 +1,23 @@
+.clock {
+    font-size: 36px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+    .clock .separator {
+        -webkit-animation: 1.5s infinite blinker;
+        animation: 1.5s infinite blinker;
+    }
+
+
+    @keyframes blinker {
+        100% {
+            opacity: 1;
+        }
+    
+        50% {
+            opacity: 0;
+        }
+    }
+    

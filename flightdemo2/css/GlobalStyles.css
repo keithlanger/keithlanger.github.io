@@ -1,0 +1,293 @@
+﻿/* You can add global styles to this file, and also import other style files */
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.animation-fade-in {
+    animation: fade 1s;
+}
+
+.height-full {
+    height: 100%;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Flight status styles */
+.flight-status-default,
+.flight-status-light-default {
+    background-color: #d7d7d7;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-dark-default {
+    background-color: #232323;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-blue-default {
+    background-color: #0068a5;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-gray-default {
+    background-color: #b9b8b8;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-now,
+.flight-status-light-now,
+.flight-status-dark-now,
+.flight-status-blue-now,
+.flight-status-gray-now {
+    background-color: #fffc2a;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-on-time,
+.flight-status-light-on-time {
+    background-color: #d7d7d7;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-dark-on-time {
+    background-color: #232323;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-blue-on-time {
+    background-color: #0068a5;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-gray-on-time {
+    background-color: #b9b8b8;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-departed,
+.flight-status-light-departed,
+.flight-status-dark-departed,
+.flight-status-blue-departed,
+.flight-status-gray-departed {
+    background-color: #054062;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-arrived,
+.flight-status-light-arrived,
+.flight-status-dark-arrived,
+.flight-status-blue-arrived,
+.flight-status-gray-arrived {
+    background-color: #35a748;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-boarding,
+.flight-status-light-boarding,
+.flight-status-dark-boarding,
+.flight-status-blue-boarding,
+.flight-status-gray-boarding {
+    background-color: #35a748;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-cancelled,
+.flight-status-light-cancelled,
+.flight-status-dark-cancelled,
+.flight-status-blue-cancelled,
+.flight-status-gray-cancelled {
+    background-color: #d6242a;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.flight-status-delayed,
+.flight-status-light-delayed,
+.flight-status-dark-delayed,
+.flight-status-blue-delayed,
+.flight-status-gray-delayed {
+    background-color: #fffc2a;
+    color: #1d1d1d;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* gate status styles */
+.gate-status-default,
+.gate-status-light-default,
+.gate-status-on-time,
+.gate-status-light-on-time {
+    background-color: rgba(215, 215, 215, 0.9);
+    color: #1d1d1d;
+}
+
+.gate-status-dark-default,
+.gate-status-dark-on-time {
+    background-color: rgba(35, 35, 35, 0.9);
+    color: #FFFFFF;
+}
+
+.gate-status-blue-default,
+.gate-status-blue-on-time {
+    background-color: rgba(0, 104, 165, 0.9);
+    color: #FFFFFF;
+}
+
+.gate-status-gray-default,
+.gate-status-gray-on-time {
+    background-color: rgba(185, 184, 184, 0.9);
+    color: #1d1d1d;
+}
+
+.gate-status-closed,
+.gate-status-light-closed,
+.gate-status-dark-closed,
+.gate-status-blue-closed,
+.gate-status-gray-closed {
+    background-color: rgba(215, 215, 215, 0.9);
+    color: #1d1d1d;
+}
+
+.gate-status-boarding,
+.gate-status-light-boarding,
+.gate-status-dark-boarding,
+.gate-status-blue-boarding,
+.gate-status-gray-boarding {
+    background-color: rgba(53, 167, 72, 0.9);
+    color: #fff;
+}
+
+.gate-status-cancelled,
+.gate-status-light-cancelled,
+.gate-status-dark-cancelled,
+.gate-status-blue-cancelled,
+.gate-status-gray-cancelled {
+    background-color: rgba(214, 36, 42, 0.9);
+    color: #fff;
+}
+
+.gate-status-delayed,
+.gate-status-light-delayed,
+.gate-status-dark-delayed,
+.gate-status-blue-delayed,
+.gate-status-gray-delayed {
+    background-color: rgba(255, 252, 42, 0.9);
+    color: #1d1d1d;
+}
+
+.gate-status-now,
+.gate-status-light-now,
+.gate-status-dark-now,
+.gate-status-blue-now,
+.gate-status-gray-now {
+    background-color: rgba(255, 252, 42, 0.9);
+    color: #1d1d1d;
+}
+
+.gate-status-departed,
+.gate-status-light-departed,
+.gate-status-dark-departed,
+.gate-status-blue-departed,
+.gate-status-gray-departed {
+    background-color: rgba(5, 64, 98, 0.9);
+    color: #fff;
+}
+
+.spinner-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45px;
+    height: 45px;
+    margin: -44px 0 0 -88px;
+    transform-origin: 45px center;
+}
+
+.first {
+    animation: spin 1998ms 0ms infinite linear;
+    opacity: 0.7;
+}
+
+.second {
+    animation: spin 1998ms 666ms infinite linear;
+    opacity: 0.5;
+}
+
+.third {
+    animation: spin 1998ms 1332ms infinite linear;
+    opacity: 0.3;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

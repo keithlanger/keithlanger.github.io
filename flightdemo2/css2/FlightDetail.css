@@ -1,0 +1,120 @@
+.flightdetail {
+  background-color: rgb(255, 255, 255);
+}
+@media only screen and (min-width: 1280px) {
+  .flightdetail .flight-card {
+    margin-bottom: 14px !important;
+  }
+}
+.flightdetail .columns {
+  margin: 0;
+}
+.flightdetail .column {
+  padding: 0;
+}
+.flightdetail .flight-card,
+.flightdetail .flight-card-light {
+  will-change: auto;
+  margin-bottom: 16px;
+  background-color: #fff;
+  height: 63px;
+  color: #000;
+  padding-left: 0.4em;
+  overflow: hidden;
+}
+.flightdetail .flight-card-dark {
+  will-change: auto;
+  margin-bottom: 16px;
+  background-color: #303030;
+  height: 63px;
+  color: #fff;
+  padding-left: 0.4em;
+  overflow: hidden;
+}
+.flightdetail .flight-card-gray {
+  will-change: auto;
+  margin-bottom: 16px;
+  background-color: #dcdcdc;
+  height: 63px;
+  color: #000;
+  padding-left: 0.4em;
+  overflow: hidden;
+}
+.flightdetail .flight-card-blue {
+  will-change: auto;
+  margin-bottom: 16px;
+  background-color: #005485;
+  height: 63px;
+  color: #fff;
+  padding-left: 0.4em;
+  overflow: hidden;
+}
+.flightdetail .logo-container {
+  position: relative;
+  align-content: center;
+  height: 50px;
+  width: 80%;
+  border-radius: 20px;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
+.flightdetail ::deep .center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flightdetail ::deep .flight-row-height {
+  height: 63px;
+}
+.flightdetail ::deep .logo-container-height {
+  height: 50px !important;
+}
+.flightdetail .time {
+  font-size: 22px;
+  line-height: 30px;
+}
+.flightdetail .airline-icon {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.flightdetail ::deep .airline-icon img {
+  height: auto;
+  width: 100%;
+  max-height: 38px;
+  max-width: 240px;
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+.flightdetail .city {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.flightdetail .gate {
+  font-size: 28px;
+  font-weight: 700;
+}
+.flightdetail .center-gate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 90px;
+}
+.flightdetail .flight,
+.flightdetail .flight-light,
+.flightdetail .flight-gray {
+  font-size: 22px;
+}
+.flightdetail .flight-blue,
+.flightdetail .flight-dark {
+  font-size: 22px;
+  color: #d9d9d9;
+}/*# sourceMappingURL=FlightDetail.css.map */
