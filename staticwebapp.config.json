@@ -2,23 +2,27 @@
     "routes": [
         {
             "route": "/bsdemo1/*",
-            "redirect": "/bsdemo1/index.html",
-            "exclude": ["*.*"]
+            "serve": "/bsdemo1/index.html",
+            "statusCode": 200
         },
         {
             "route": "/flightdemo1/*",
-            "redirect": "/flightdemo1/index.html",
-            "exclude": ["*.*"]
+            "serve": "/flightdemo1/index.html",
+            "statusCode": 200
         },
         {
             "route": "/flightclient/*",
-            "redirect": "/flightclient/index.html",
-            "exclude": ["*.*"]
+            "serve": "/flightclient/index.html",
+            "statusCode": 200
         },
         {
             "route": "/flightdemo2/*",
-            "redirect": "/flightdemo2/index.html",
-            "exclude": ["*.*"]
+            "serve": "/flightdemo2/index.html",
+            "statusCode": 200
         }
-    ]
+    ],
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot}", "/api/*"]
+    }
 }

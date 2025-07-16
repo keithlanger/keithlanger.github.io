@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="refresh" content="0; URL='/index.html'" />
-    <title>404 - redirect</title>
+    <title>K. Langer Demos - Loading...</title>
+    <script>
+        // GitHub Pages SPA routing fix
+        // This script handles routing for single-page applications hosted on GitHub Pages
+        (function() {
+            var pathArray = window.location.pathname.split('/');
+            var repoName = pathArray[1];
+            
+            // Check if we're in a demo subdirectory
+            if (pathArray.length > 1 && (pathArray[1] === 'bsdemo1' || pathArray[1] === 'flightdemo1' || pathArray[1] === 'flightclient' || pathArray[1] === 'flightdemo2')) {
+                // For demo apps, redirect to their index.html with the full path stored
+                sessionStorage.redirect = location.href;
+                window.location.replace('/' + pathArray[1] + '/index.html');
+            } else {
+                // For the main site, store the attempted URL and redirect to root
+                sessionStorage.redirect = location.href;
+                window.location.replace('/');
+            }
+        })();
+    </script>
 </head>
-
-<body></body>
-
+<body>
+    <div style="text-align: center; margin-top: 50px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <h2>Redirecting...</h2>
+        <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
+    </div>
+</body>
 </html>
