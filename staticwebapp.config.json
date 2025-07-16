@@ -2,19 +2,23 @@
     "routes": [
         {
             "route": "/bsdemo1/*",
-            "redirect": "/bsdemo1/index.html"
+            "redirect": "/bsdemo1/index.html",
+            "exclude": ["*.*"]
         },
         {
             "route": "/flightdemo1/*",
-            "redirect": "/flightdemo1/index.html"
+            "redirect": "/flightdemo1/index.html",
+            "exclude": ["*.*"]
         },
         {
             "route": "/flightclient/*",
-            "redirect": "/flightclient/index.html"
+            "redirect": "/flightclient/index.html",
+            "exclude": ["*.*"]
         },
         {
             "route": "/flightdemo2/*",
-            "redirect": "/flightdemo2/index.html"
+            "redirect": "/flightdemo2/index.html",
+            "exclude": ["*.*"]
         }
     ]
 }
