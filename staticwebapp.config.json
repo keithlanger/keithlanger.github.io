@@ -1,0 +1,24 @@
+{
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot}", "/api/*"]
+    },
+    "routes": [
+        {
+            "route": "/bsdemo1/*",
+            "redirect": "/bsdemo1/index.html"
+        },
+        {
+            "route": "/flightdemo1/*",
+            "redirect": "/flightdemo1/index.html"
+        },
+        {
+            "route": "/flightclient/*",
+            "redirect": "/flightclient/index.html"
+        },
+        {
+            "route": "/flightdemo2/*",
+            "redirect": "/flightdemo2/index.html"
+        }
+    ]
+}
