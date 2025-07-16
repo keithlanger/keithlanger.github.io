@@ -7,7 +7,19 @@
             }
         },
         {
+            "route": "/bsdemo1/static/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
             "route": "/flightdemo1/assets/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "route": "/flightdemo1/static/*",
             "headers": {
                 "Cache-Control": "public, max-age=31536000, immutable"
             }
@@ -19,7 +31,19 @@
             }
         },
         {
+            "route": "/flightclient/static/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
             "route": "/flightdemo2/assets/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "route": "/flightdemo2/static/*",
             "headers": {
                 "Cache-Control": "public, max-age=31536000, immutable"
             }
@@ -47,9 +71,13 @@
             "*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot,json}",
             "/api/*",
             "/bsdemo1/assets/*",
+            "/bsdemo1/static/*",
             "/flightdemo1/assets/*",
+            "/flightdemo1/static/*",
             "/flightclient/assets/*",
+            "/flightclient/static/*",
             "/flightdemo2/assets/*",
+            "/flightdemo2/static/*",
             "/bsdemo1/*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot,json}",
             "/flightdemo1/*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot,json}",
             "/flightclient/*.{css,js,map,ico,png,jpg,jpeg,gif,svg,woff,woff2,ttf,eot,json}",
