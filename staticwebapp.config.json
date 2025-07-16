@@ -26,23 +26,19 @@
         },
         {
             "route": "/bsdemo1/*",
-            "serve": "/bsdemo1/index.html",
-            "statusCode": 200
+            "rewrite": "/bsdemo1/index.html"
         },
         {
             "route": "/flightdemo1/*",
-            "serve": "/flightdemo1/index.html",
-            "statusCode": 200
+            "rewrite": "/flightdemo1/index.html"
         },
         {
             "route": "/flightclient/*",
-            "serve": "/flightclient/index.html",
-            "statusCode": 200
+            "rewrite": "/flightclient/index.html"
         },
         {
             "route": "/flightdemo2/*",
-            "serve": "/flightdemo2/index.html",
-            "statusCode": 200
+            "rewrite": "/flightdemo2/index.html"
         }
     ],
     "navigationFallback": {
