@@ -1,6 +1,28 @@
 {
-  "navigationFallback": {
-    "rewrite": "index.html",
-    "exclude": ["/images/*", "/css/*"]
-  }
+  "routes": [
+    {
+      "route": "/bsdemo1/*",
+      "navigationFallback": {
+        "rewrite": "/bsdemo1/index.html"
+      }
+    },
+    {
+      "route": "/flightdemo1/*",
+      "navigationFallback": {
+        "rewrite": "/flightdemo1/index.html"
+      }
+    },
+    {
+      "route": "/flightclient/*",
+      "navigationFallback": {
+        "rewrite": "/flightclient/index.html"
+      }
+    },
+    {
+      "route": "/flightdemo2/*",
+      "navigationFallback": {
+        "rewrite": "/flightdemo2/index.html"
+      }
+    }
+  ]
 }
