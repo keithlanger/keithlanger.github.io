@@ -1,9 +1,0 @@
-# Apache .htaccess file for React Router
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /flightclient/
-  RewriteRule ^flightclient/index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^flightclient/ /flightclient/index.html [L]
-</IfModule>
