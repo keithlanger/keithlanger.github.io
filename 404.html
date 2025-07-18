@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pages SPA routing fix for multiple SPAs
+    (function() {
+      var path = window.location.pathname;
+      var spaFolders = ['bsdemo1', 'flightdemo1', 'flightclient', 'flightdemo2'];
+      var match = path.match(/^\/(bsdemo1|flightdemo1|flightclient|flightdemo2)(\/.*)?$/);
+      if (match) {
+        // For sub-SPAs, redirect to their index.html and preserve the path
+        var spa = match[1];
+        var rest = match[2] || '/';
+        sessionStorage.redirect = path + window.location.search + window.location.hash;
+        window.location.replace('/' + spa + '/index.html');
+      } else {
+        // For the root SPA, redirect to root index.html and preserve the path
+        sessionStorage.redirect = path + window.location.search + window.location.hash;
+        window.location.replace('/index.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div style="text-align:center;margin-top:50px;font-family:sans-serif;">
+    <h2>Redirecting...</h2>
+    <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
+  </div>
+</body>
+</html>
