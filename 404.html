@@ -14,11 +14,11 @@
         var spa = match[1];
         var rest = match[2] || '/';
         sessionStorage.redirect = path + window.location.search + window.location.hash;
-        window.location.replace('/' + spa + '/index.html');
+        window.location.replace('/' + spa + '/');
       } else {
         // For the root SPA, redirect to root index.html and preserve the path
         sessionStorage.redirect = path + window.location.search + window.location.hash;
-        window.location.replace('/index.html');
+        window.location.replace('/');
       }
     })();
   </script>
