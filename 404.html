@@ -8,7 +8,8 @@
     (function() {
       var path = window.location.pathname;
       var spaFolders = ['bsdemo1', 'flightdemo1', 'flightclient', 'flightdemo2'];
-      var match = path.match(/^\/(bsdemo1|flightdemo1|flightclient|flightdemo2)(\/.*)?$/);
+      var spaFolders = ['bsdemo1', 'flightdemo1', 'flightclient', 'flightdemo2', 'full_airport_demo'];
+      var match = path.match(/^\/(bsdemo1|flightdemo1|flightclient|flightdemo2|full_airport_demo)(\/.*)?$/);
       if (match) {
         // For sub-SPAs, redirect to their index.html and preserve the path
         var spa = match[1];
