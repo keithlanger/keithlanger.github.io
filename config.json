@@ -1,0 +1,21 @@
+{
+  "defaultEnvironment": "main",
+  "urls": {
+    "main": {
+      "daily": "https://dailyapisimple-gjchg7exhrcxf5cc.centralus-01.azurewebsites.net",
+      "ddcgen": "https://ddcgenlite2-cqenbrbmcacahrfr.centralus-01.azurewebsites.net"
+    },
+    "linux": {
+      "daily": "https://dailyapisimple-linux2-cbcscfeafkekg6ca.centralus-01.azurewebsites.net",
+      "ddcgen": "https://ddcgenlite-linux2-eraqcsfrc0fpbgeu.centralus-01.azurewebsites.net"
+    },
+    "container": {
+      "daily": "https://dailyapisimple-container2.azurewebsites.net",
+      "ddcgen": "https://ddcgenlite-container.azurewebsites.net"
+    },
+    "canada": {
+      "daily": "https://dailyapisimple-canada-e8gca8e5ehade4hp.canadacentral-01.azurewebsites.net",
+      "ddcgen": "https://ddcgenlite-canada-hcc5fffnezhgcwfa.canadacentral-01.azurewebsites.net"
+    }
+  }
+}
