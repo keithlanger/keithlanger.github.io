@@ -16,6 +16,10 @@
     "canada": {
       "daily": "https://dailyapisimple-canada-e8gca8e5ehade4hp.canadacentral-01.azurewebsites.net",
       "ddcgen": "https://ddcgenlite-canada-hcc5fffnezhgcwfa.canadacentral-01.azurewebsites.net"
+    },
+    "local": {
+      "daily": "https://localhost:5001",
+      "ddcgen": "https://localhost:7217"
     }
   }
 }
