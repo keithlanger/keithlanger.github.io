@@ -21,10 +21,21 @@
     <link rel="stylesheet" href="css/FlightDetail.min.css">  
     <link rel="stylesheet" href="css/Clock.min.css">
     <link rel="stylesheet" href="css/Banner.css">-->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        var ua = navigator.userAgent;
+        if (/AFT|Fire TV|AFTB|AFTM|AFTS|AFTT|AFTN|AFTA|AFTMM|AFTJM|AFTSS|AFTKA|AFTKM|AFTSO|AFTTI|AFTFL|AFTFS|AFTPR|AFTSA|AFTSB|AFTSC|AFTSE|AFTSH|AFTSI|AFTSK|AFTSL|AFTSM|AFTSN|AFTSS|AFTST|AFTTA|AFTTB|AFTTC|AFTTD|AFTTE|AFTTF|AFTTG|AFTTH|AFTTI|AFTTJ|AFTTK|AFTTL|AFTTM|AFTTN|AFTTO|AFTTP|AFTTR|AFTTS|AFTTT|AFTTU|AFTTV|AFTTW|AFTTX|AFTTY|AFTTZ/i.test(ua)) {
+          console.log("Fire TV detected.  minWidth will not be set");
+        } else {
+          console.log("Non Fire TV device detected.  Setting minWidth to 1080px");
+          document.body.style.minWidth = "1080px";
+        }
+      });
+    </script>
     <script type="module" crossorigin src="/flightdemo2/static/index-BTru8eSh.js"></script>
     <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-B1aQWpAG.css">
   </head>
-  <body style="min-width:1080px;">
+  <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
