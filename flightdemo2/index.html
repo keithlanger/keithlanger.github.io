@@ -24,7 +24,8 @@
     <script>
       window.addEventListener('DOMContentLoaded', function() {
         var width = document.documentElement.clientWidth;
-        if (width < 1080) {
+        //I'm using 960 as the cutoff because that's the fire TV width
+        if (width < 960) {
           console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
           document.body.style.minWidth = "1080px";
         } else {
