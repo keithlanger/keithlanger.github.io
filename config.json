@@ -1,5 +1,5 @@
 {
-  "defaultEnvironment": "container",
+  "defaultEnvironment": "main",
   "urls": {
     "main": {
       "daily": "https://dailyapisimple-gjchg7exhrcxf5cc.centralus-01.azurewebsites.net",
