@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/flightdemo2/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
@@ -24,17 +24,42 @@
     <script>
       window.addEventListener('DOMContentLoaded', function() {
         var width = document.documentElement.clientWidth;
-        //I'm using 960 as the cutoff because that's the fire TV width
+        // I'm using 960 as the cutoff because that's the fire TV width
         if (width < 960) {
           console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
           document.body.style.minWidth = "1080px";
         } else {
           console.log("Width detected: " + width + "px. minWidth not set");
         }
+
+        // Viewport param logic (supports both search and hash for SPA routing)
+        function getParam(name) {
+          // Check search
+          const params = new URLSearchParams(window.location.search);
+          if (params.has(name)) return params.get(name);
+          // Check hash
+          if (window.location.hash) {
+            const hashQuery = window.location.hash.split('?')[1];
+            if (hashQuery) {
+              const hashParams = new URLSearchParams(hashQuery);
+              if (hashParams.has(name)) return hashParams.get(name);
+            }
+          }
+          return null;
+        }
+
+        const viewportValue = getParam('viewport');
+        if (viewportValue === '1920x1080' || viewportValue === '1920') {
+          var meta = document.querySelector('meta[name="viewport"]');
+          if (meta) {
+            meta.setAttribute('content', 'width=1920, height=1080');
+            console.log('Meta viewport overridden to width=1920, height=1080 due to viewport param');
+          }
+        }
       });
     </script>
-    <script type="module" crossorigin src="/flightdemo2/static/index-BTru8eSh.js"></script>
-    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-B1aQWpAG.css">
+    <script type="module" crossorigin src="/flightdemo2/static/index-BEKanojD.js"></script>
+    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-Bup7AtNG.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
