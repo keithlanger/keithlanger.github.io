@@ -23,177 +23,38 @@
     <link rel="stylesheet" href="css/Banner.css">-->
     <script>
       window.addEventListener('DOMContentLoaded', function() {
-        // Helper: read URL param from search or hash query (supports SPA hash routing)
-        // Fall back to parsing the raw href before the hash if needed (some servers
-        // or router setups can move or strip the search part).
+        var width = document.documentElement.clientWidth;
+        // I'm using 960 as the cutoff because that's the fire TV width
+        if (width < 960) {
+          console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
+          document.body.style.minWidth = "1080px";
+        } else {
+          console.log("Width detected: " + width + "px. minWidth not set");
+        }
+
+        // Viewport param logic (supports both search and hash for SPA routing)
         function getParam(name) {
-          try {
-            const params = new URLSearchParams(window.location.search);
-            if (params.has(name)) {
-              console.log('getParam: found in search', name, params.get(name));
-              return params.get(name);
+          // Check search
+          const params = new URLSearchParams(window.location.search);
+          if (params.has(name)) return params.get(name);
+          // Check hash
+          if (window.location.hash) {
+            const hashQuery = window.location.hash.split('?')[1];
+            if (hashQuery) {
+              const hashParams = new URLSearchParams(hashQuery);
+              if (hashParams.has(name)) return hashParams.get(name);
             }
-
-            if (window.location.hash) {
-              const hashQuery = window.location.hash.split('?')[1];
-              if (hashQuery) {
-                const hashParams = new URLSearchParams(hashQuery);
-                if (hashParams.has(name)) {
-                  console.log('getParam: found in hash', name, hashParams.get(name));
-                  return hashParams.get(name);
-                }
-              }
-            }
-
-            // Fallback: try to parse the full href portion before a hash (in case
-            // a router or base href manipulates the visible search)
-            const href = window.location.href || '';
-            const qIndex = href.indexOf('?');
-            if (qIndex >= 0) {
-              const after = href.substring(qIndex);
-              const beforeHash = after.split('#')[0];
-              const fallbackParams = new URLSearchParams(beforeHash);
-              if (fallbackParams.has(name)) {
-                console.log('getParam: found in href fallback', name, fallbackParams.get(name));
-                return fallbackParams.get(name);
-              }
-            }
-          } catch (e) {
-            console.warn('getParam: error parsing params', e);
           }
           return null;
         }
 
-        // Preserve existing 'viewport' override behavior (e.g. ?viewport=1920)
         const viewportValue = getParam('viewport');
         if (viewportValue === '1920x1080' || viewportValue === '1920') {
-          var meta1920 = document.getElementById('meta-viewport') || document.querySelector('meta[name="viewport"]');
-          if (meta1920) {
-            meta1920.setAttribute('content', 'width=1920, height=1080');
+          var meta = document.querySelector('meta[name="viewport"]');
+          if (meta) {
+            meta.setAttribute('content', 'width=1920, height=1080');
             console.log('Meta viewport overridden to width=1920, height=1080 due to viewport param');
           }
-        }
-
-        // Rotation handling via URL param 'rotate'. Accepts 90 or -90 (also +90).
-        // Example: ?rotate=90 or ?rotate=-90. This rotates #root into portrait mode,
-        // centers it, and swaps width/height for 960x540 / 540x960 cases.
-        const rotateParam = getParam('rotate');
-        console.log('Rotation diagnostic: location=', window.location.href, ' search=', window.location.search, ' hash=', window.location.hash);
-        console.log('Rotation diagnostic: raw rotate param=', rotateParam);
-
-        function normalizeRotateVal(v) {
-          if (!v) return null;
-          const cleaned = String(v).replace('+', '').trim();
-          const n = parseInt(cleaned, 10);
-          console.log('Rotation diagnostic: parsed rotate value=', cleaned, '->', n);
-          if (n === 90 || n === -90) return n;
-          return null;
-        }
-
-        let appliedAngle = normalizeRotateVal(rotateParam);
-        console.log('Rotation diagnostic: appliedAngle=', appliedAngle);
-        if (appliedAngle !== null) {
-          console.log('Rotation diagnostic: applying rotation of', appliedAngle, 'degrees');
-          const meta = document.getElementById('meta-viewport') || document.querySelector('meta[name="viewport"]');
-          const root = document.getElementById('root');
-
-          function applyRotation() {
-            try {
-              if (!root) {
-                console.warn('Rotation diagnostic: #root element not found');
-                return;
-              }
-            // Reset any previous inline sizing/transform so measurements are accurate
-            root.style.transition = 'none';
-            root.style.width = '';
-            root.style.height = '';
-            root.style.position = '';
-            root.style.left = '';
-            root.style.top = '';
-            root.style.transformOrigin = '';
-            root.style.transform = '';
-
-            const w = window.innerWidth || document.documentElement.clientWidth;
-            const h = window.innerHeight || document.documentElement.clientHeight;
-
-            // For a 960x540 device we want the content rotated to portrait 540x960
-            const is960x540 = (w === 960 && h === 540) || (w === 540 && h === 960);
-
-            // Make the page layout stable for the rotated content
-            document.documentElement.style.height = '100%';
-            document.body.style.height = '100%';
-            document.body.style.margin = '0';
-            document.body.style.overflow = 'hidden';
-
-            // Compute target width/height for the rotated content: portrait dims
-            let targetWidth = Math.min(w, h);
-            let targetHeight = Math.max(w, h);
-            if (is960x540) {
-              // Ensure exact portrait mapping for the 960x540 case
-              targetWidth = 540;
-              targetHeight = 960;
-              if (w === 540 && h === 960) {
-                // Already portrait — but the user asked to rotate content into portrait; we still center it
-                targetWidth = 540;
-                targetHeight = 960;
-              }
-            }
-
-            // Apply sizing and centering so rotated content appears centered in the viewport
-            // Use fixed so positioning is relative to the viewport (avoids ancestor positioning issues)
-            root.style.position = 'fixed';
-              root.style.left = '50%';
-              root.style.top = '50%';
-              root.style.width = targetWidth + 'px';
-              root.style.height = targetHeight + 'px';
-              // rotate around the element center and translate to center it
-              root.style.transformOrigin = 'center center';
-              root.style.transform = 'translate(-50%, -50%) rotate(' + appliedAngle + 'deg)';
-            //root.style.transformOrigin = 'center center';
-            //root.style.transformOrigin = 'left top';
-            //root.style.transform = 'translate(-50%, -50%) rotate(' + appliedAngle + 'deg)';
-            //root.style.transform = 'rotate(' + appliedAngle + 'deg)';
-            root.style.transition = '';
-            //root.style.overflow = "hidden";
-
-            // Add a body class so CSS can target rotated state if needed
-            try {
-              const cls = 'rotated' + (appliedAngle === -90 ? '--90' : '-90');
-              document.body.classList.remove('rotated--90', 'rotated-90');
-              document.body.classList.add(cls);
-              console.log('Rotation diagnostic: added body class', cls);
-            } catch (err) {
-              console.warn('Rotation diagnostic: failed to add body class', err);
-            }
-
-            // Update meta viewport so CSS media queries that rely on device width
-            // will see the portrait width/height (swap logical dims). This makes
-            // @media (max-width: ...) behave as if the device is portrait.
-            try {
-              if (meta) {
-                meta.setAttribute('content', 'width=' + targetWidth + ', height=' + targetHeight + ', initial-scale=1');
-                console.log('Rotation diagnostic: meta viewport set to', 'width=' + targetWidth + ', height=' + targetHeight);
-              }
-            } catch (err) {
-              console.warn('Rotation diagnostic: failed to update meta viewport', err);
-            }
-
-            // If we're on the 960x540 device, also set the meta viewport to portrait so scaling aligns
-            if (is960x540 && meta) {
-              if (targetWidth === 540 && targetHeight === 960) {
-                meta.setAttribute('content', 'width=540, height=960, initial-scale=1');
-                console.log('Applied rotated portrait viewport 540x960 due to rotate param and 960x540 device');
-              }
-            }
-          } catch (err) {
-            console.error('Rotation diagnostic: error applying rotation', err);
-          }
-          }
-
-          // Apply now and on changes
-          applyRotation();
-          window.addEventListener('resize', applyRotation);
-          window.addEventListener('orientationchange', applyRotation);
         }
       });
     </script>
