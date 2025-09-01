@@ -22,15 +22,35 @@
     <link rel="stylesheet" href="css/Clock.min.css">
     <link rel="stylesheet" href="css/Banner.css">-->
     <script>
-      window.addEventListener('DOMContentLoaded', function() {
-        var width = document.documentElement.clientWidth;
-        // I'm using 960 as the cutoff because that's the fire TV width
-        if (width < 960) {
-          console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
-          document.body.style.minWidth = "1080px";
-        } else {
-          console.log("Width detected: " + width + "px. minWidth not set");
+      // Set root rem (html font-size) proportional to the larger screen dimension.
+      // Contract: at maxDim === 1920px -> 1rem === 16px. Scales linearly from there.
+      function setRootRem() {
+        try {
+          const maxDim = Math.max(window.screen?.width || 0, window.screen?.height || 0, window.innerWidth || 0, window.innerHeight || 0);
+          const base = 1920; // design reference where rem=16px
+          const baseRemPx = 16;
+          const scale = maxDim / base;
+          // Clamp to reasonable bounds to avoid absurd sizes on tiny/huge screens
+          const remPx = Math.max(8, Math.min(32, +(baseRemPx * scale).toFixed(2)));
+          document.documentElement.style.fontSize = remPx + 'px';
+          console.log('setRootRem: maxDim=' + maxDim + ' => root font-size=' + remPx + 'px');
+        } catch (err) {
+          console.error('setRootRem error', err);
         }
+      }
+
+      // Run on load and when viewport changes
+      window.addEventListener('DOMContentLoaded', function() {
+        setRootRem();
+
+        // var width = document.documentElement.clientWidth;
+        // // I'm using 960 as the cutoff because that's the fire TV width
+        // if (width < 960) {
+        //   console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
+        //   document.body.style.minWidth = "1080px";
+        // } else {
+        //   console.log("Width detected: " + width + "px. minWidth not set");
+        // }
 
         // Viewport param logic (supports both search and hash for SPA routing)
         function getParam(name) {
@@ -57,9 +77,13 @@
           }
         }
       });
+
+      // Update on resize / orientation change
+      window.addEventListener('resize', setRootRem);
+      window.addEventListener('orientationchange', setRootRem);
     </script>
-    <script type="module" crossorigin src="/flightdemo2/static/index-C8eSlUQX.js"></script>
-    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-DNEY4u0G.css">
+    <script type="module" crossorigin src="/flightdemo2/static/index-DydhIavW.js"></script>
+    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-DrJA_yCZ.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
