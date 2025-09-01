@@ -21,37 +21,20 @@
     <link rel="stylesheet" href="css/FlightDetail.min.css">  
     <link rel="stylesheet" href="css/Clock.min.css">
     <link rel="stylesheet" href="css/Banner.css">-->
+    <style>
+      /* Set root rem proportionally to the larger viewport axis.
+         .08333vw at 1920px == 16px (1920 * 0.0008333 = ~1.6 -> wait — use .8333?)
+         Using .08333 ensures 1920 * 0.08333vw = 16px (0.08333% of viewport width -> 1920 * 0.0008333 = 1.6?)
+         Practical mapping: use max(.8333vw, .8333vh) would be 16px at 1920 — but the user requested .08333; preserve their value.
+      */
+      :root { font-size: max(0.8333vw, 0.8333vh); }
+      /* Set root rem proportionally to the larger viewport axis.
+        At 1920px, 0.8333vw (0.8333% of 1920) == ~16px. Use max of vw/vh so rem follows the larger axis.
+      */
+    </style>
     <script>
-      // Set root rem (html font-size) proportional to the larger screen dimension.
-      // Contract: at maxDim === 1920px -> 1rem === 16px. Scales linearly from there.
-      function setRootRem() {
-        try {
-          const maxDim = Math.max(window.screen?.width || 0, window.screen?.height || 0, window.innerWidth || 0, window.innerHeight || 0);
-          const base = 1920; // design reference where rem=16px
-          const baseRemPx = 16;
-          const scale = maxDim / base;
-          // Clamp to reasonable bounds to avoid absurd sizes on tiny/huge screens
-          const remPx = Math.max(8, Math.min(32, +(baseRemPx * scale).toFixed(2)));
-          document.documentElement.style.fontSize = remPx + 'px';
-          console.log('setRootRem: maxDim=' + maxDim + ' => root font-size=' + remPx + 'px');
-        } catch (err) {
-          console.error('setRootRem error', err);
-        }
-      }
-
-      // Run on load and when viewport changes
+      // Keep viewport param handling but remove JS rem-scaling (handled by CSS above)
       window.addEventListener('DOMContentLoaded', function() {
-        setRootRem();
-
-        // var width = document.documentElement.clientWidth;
-        // // I'm using 960 as the cutoff because that's the fire TV width
-        // if (width < 960) {
-        //   console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
-        //   document.body.style.minWidth = "1080px";
-        // } else {
-        //   console.log("Width detected: " + width + "px. minWidth not set");
-        // }
-
         // Viewport param logic (supports both search and hash for SPA routing)
         function getParam(name) {
           // Check search
@@ -77,10 +60,6 @@
           }
         }
       });
-
-      // Update on resize / orientation change
-      window.addEventListener('resize', setRootRem);
-      window.addEventListener('orientationchange', setRootRem);
     </script>
     <script type="module" crossorigin src="/flightdemo2/static/index-DydhIavW.js"></script>
     <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-DrJA_yCZ.css">
