@@ -206,14 +206,14 @@
             // Update meta viewport so CSS media queries that rely on device width
             // will see the portrait width/height (swap logical dims). This makes
             // @media (max-width: ...) behave as if the device is portrait.
-            try {
-              if (meta) {
-                meta.setAttribute('content', 'width=' + targetWidth + ', height=' + targetHeight + ', initial-scale=1');
-                console.log('Rotation diagnostic: meta viewport set to', 'width=' + targetWidth + ', height=' + targetHeight);
-              }
-            } catch (err) {
-              console.warn('Rotation diagnostic: failed to update meta viewport', err);
-            }
+            // try {
+            //   if (meta) {
+            //     meta.setAttribute('content', 'width=' + targetWidth + ', height=' + targetHeight + ', initial-scale=1');
+            //     console.log('Rotation diagnostic: meta viewport set to', 'width=' + targetWidth + ', height=' + targetHeight);
+            //   }
+            // } catch (err) {
+            //   console.warn('Rotation diagnostic: failed to update meta viewport', err);
+            // }
 
             // // If we're on the 960x540 device, also set the meta viewport to portrait so scaling aligns
             // if (is960x540 && meta) {
