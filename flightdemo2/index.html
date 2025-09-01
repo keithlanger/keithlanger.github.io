@@ -64,6 +64,43 @@
           return null;
         }
 
+        // Ensure a <meta name="viewport"> exists; create it if missing
+        function ensureMetaViewport() {
+          var m = document.getElementById('meta-viewport') || document.querySelector('meta[name="viewport"]');
+          if (!m) {
+            try {
+              m = document.createElement('meta');
+              m.setAttribute('name', 'viewport');
+              m.setAttribute('id', 'meta-viewport');
+              m.setAttribute('content', 'width=device-width, initial-scale=1');
+              document.getElementsByTagName('head')[0].appendChild(m);
+              console.log('ensureMetaViewport: created meta viewport tag');
+            } catch (e) {
+              console.warn('ensureMetaViewport: failed to create meta viewport', e);
+            }
+          }
+          return m;
+        }
+
+        // URL param: viewportScale — set meta viewport initial-scale to this value
+        (function () {
+          try {
+            const rawScale = getParam('viewportScale');
+            if (rawScale !== null) {
+              const parsed = parseFloat(rawScale);
+              if (!isNaN(parsed) && parsed > 0) {
+                const meta = ensureMetaViewport();
+                meta.setAttribute('content', 'width=device-width, initial-scale=' + parsed);
+                console.log('viewportScale applied:', parsed);
+              } else {
+                console.warn('viewportScale param invalid:', rawScale);
+              }
+            }
+          } catch (e) {
+            console.warn('viewportScale handler error', e);
+          }
+        })();
+
         // Preserve existing 'viewport' override behavior (e.g. ?viewport=1920)
         const viewportValue = getParam('viewport');
         if (viewportValue === '1920x1080' || viewportValue === '1920') {
