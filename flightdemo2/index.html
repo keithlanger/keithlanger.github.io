@@ -165,16 +165,16 @@
             // Compute target width/height for the rotated content: portrait dims
             let targetWidth = Math.min(w, h);
             let targetHeight = Math.max(w, h);
-            if (is960x540) {
-              // Ensure exact portrait mapping for the 960x540 case
-              targetWidth = 540;
-              targetHeight = 960;
-              if (w === 540 && h === 960) {
-                // Already portrait — but the user asked to rotate content into portrait; we still center it
-                targetWidth = 540;
-                targetHeight = 960;
-              }
-            }
+            // if (is960x540) {
+            //   // Ensure exact portrait mapping for the 960x540 case
+            //   targetWidth = 540;
+            //   targetHeight = 960;
+            //   if (w === 540 && h === 960) {
+            //     // Already portrait — but the user asked to rotate content into portrait; we still center it
+            //     targetWidth = 540;
+            //     targetHeight = 960;
+            //   }
+            // }
 
             // Apply sizing and centering so rotated content appears centered in the viewport
             // Use fixed so positioning is relative to the viewport (avoids ancestor positioning issues)
@@ -215,13 +215,13 @@
               console.warn('Rotation diagnostic: failed to update meta viewport', err);
             }
 
-            // If we're on the 960x540 device, also set the meta viewport to portrait so scaling aligns
-            if (is960x540 && meta) {
-              if (targetWidth === 540 && targetHeight === 960) {
-                meta.setAttribute('content', 'width=540, height=960, initial-scale=1');
-                console.log('Applied rotated portrait viewport 540x960 due to rotate param and 960x540 device');
-              }
-            }
+            // // If we're on the 960x540 device, also set the meta viewport to portrait so scaling aligns
+            // if (is960x540 && meta) {
+            //   if (targetWidth === 540 && targetHeight === 960) {
+            //     meta.setAttribute('content', 'width=540, height=960, initial-scale=1');
+            //     console.log('Applied rotated portrait viewport 540x960 due to rotate param and 960x540 device');
+            //   }
+            // }
           } catch (err) {
             console.error('Rotation diagnostic: error applying rotation', err);
           }
