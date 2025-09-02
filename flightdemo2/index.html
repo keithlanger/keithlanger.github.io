@@ -3,19 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/flightdemo2/favicon.ico" />
-    <meta
-      id="meta-viewport"
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
+  <meta id="meta-viewport" name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" />
+    <meta
+      name="description"
+    />
     <title>React Flight Test</title>
-    <base href="/flightdemo2/" />
+    <base href="/flightdemo2/">
     <!-- <link rel="stylesheet" href="/css/spectre.minimal.css"> -->
-    <!-- <link rel="stylesheet" href="/css/spectre-lite.css"> -->
-    <link rel="stylesheet" href="/flightdemo2/css/open-sans.min.css" />
-    <link rel="stylesheet" href="/flightdemo2/css/GlobalStyles.min.css" />
+     <!-- <link rel="stylesheet" href="/css/spectre-lite.css"> -->
+    <link rel="stylesheet" href="/flightdemo2/css/open-sans.min.css">
+    <link rel="stylesheet" href="/flightdemo2/css/GlobalStyles.min.css">
     <!--<script src="lib/rawdeflate.js"></script>
     <script src="lib/rawinflate.js"></script>
     <script src="lib/utf8.js"></script>-->
@@ -24,135 +22,44 @@
     <link rel="stylesheet" href="css/Clock.min.css">
     <link rel="stylesheet" href="css/Banner.css">-->
     <script>
-      window.addEventListener("DOMContentLoaded", function () {
-        // Helper: read URL param from search or hash query (supports SPA hash routing)
-        // Fall back to parsing the raw href before the hash if needed (some servers
-        // or router setups can move or strip the search part).
+      window.addEventListener('DOMContentLoaded', function() {
+        var width = document.documentElement.clientWidth;
+        // I'm using 960 as the cutoff because that's the fire TV width
+        if (width < 960) {
+          console.log("Width detected: " + width + "px. Setting minWidth to 1080px");
+          document.body.style.minWidth = "1080px";
+        } else {
+          console.log("Width detected: " + width + "px. minWidth not set");
+        }
+
+        // Viewport param logic (supports both search and hash for SPA routing)
         function getParam(name) {
-          try {
-            const params = new URLSearchParams(window.location.search);
-            if (params.has(name)) {
-              console.log("getParam: found in search", name, params.get(name));
-              return params.get(name);
+          // Check search
+          const params = new URLSearchParams(window.location.search);
+          if (params.has(name)) return params.get(name);
+          // Check hash
+          if (window.location.hash) {
+            const hashQuery = window.location.hash.split('?')[1];
+            if (hashQuery) {
+              const hashParams = new URLSearchParams(hashQuery);
+              if (hashParams.has(name)) return hashParams.get(name);
             }
-
-            if (window.location.hash) {
-              const hashQuery = window.location.hash.split("?")[1];
-              if (hashQuery) {
-                const hashParams = new URLSearchParams(hashQuery);
-                if (hashParams.has(name)) {
-                  console.log(
-                    "getParam: found in hash",
-                    name,
-                    hashParams.get(name)
-                  );
-                  return hashParams.get(name);
-                }
-              }
-            }
-
-            // Fallback: try to parse the full href portion before a hash (in case
-            // a router or base href manipulates the visible search)
-            const href = window.location.href || "";
-            const qIndex = href.indexOf("?");
-            if (qIndex >= 0) {
-              const after = href.substring(qIndex);
-              const beforeHash = after.split("#")[0];
-              const fallbackParams = new URLSearchParams(beforeHash);
-              if (fallbackParams.has(name)) {
-                console.log(
-                  "getParam: found in href fallback",
-                  name,
-                  fallbackParams.get(name)
-                );
-                return fallbackParams.get(name);
-              }
-            }
-          } catch (e) {
-            console.warn("getParam: error parsing params", e);
           }
           return null;
         }
 
-
-        // Rotation handling via URL param 'rotate'. Accepts 90 or -90 (also +90).
-        // Example: ?rotate=90 or ?rotate=-90. This rotates #root into portrait mode,
-        // centers it, and swaps width/height for 960x540 / 540x960 cases.
-  const rotateParam = getParam("rotate");
-  let currentRotation = 0;
-        console.log(
-          "Rotation diagnostic: location=",
-          window.location.href,
-          " search=",
-          window.location.search,
-          " hash=",
-          window.location.hash
-        );
-        console.log("Rotation diagnostic: raw rotate param=", rotateParam);
-
-        if (rotateParam) {
-          const parsed = parseInt(rotateParam, 10);
-          if (!isNaN(parsed)) {
-            currentRotation = parsed;
-            rotatePage(parsed);
-            window.onresize = function() { rotatePage(currentRotation); };
-          }
-        }
-
-        function rotatePage(degrees) {
-          const root = document.getElementById('root');
-          if (!root) return;
-
-          root.style.background = '#fff';
-
-          // For centered rotation we make the element fixed at viewport center
-          // and rotate around its center. We swap width/height for 90/-90 so
-          // the rotated content matches viewport extents.
-          if (degrees === 90 || degrees === -90 || degrees === 270) {
-            console.log('Rotating to', degrees, 'using centered transform');
-
-            root.style.position = 'fixed';
-            root.style.top = '50%';
-            root.style.left = '50%';
-            root.style.margin = '0';
-            root.style.padding = '0';
-            // swap width/height so rotated layout fills viewport
-            root.style.width = window.innerHeight + 'px';
-            root.style.height = window.innerWidth + 'px';
-            root.style.transformOrigin = 'center center';
-
-            const angle = (degrees === -90 || degrees === 270) ? -90 : 90;
-            root.style.transform = 'translate(-50%,-50%) rotate(' + angle + 'deg)';
-
-          } else if (degrees === 180 || degrees === -180) {
-            console.log('Rotating to 180 using centered transform');
-
-            root.style.position = 'fixed';
-            root.style.top = '50%';
-            root.style.left = '50%';
-            root.style.width = window.innerWidth + 'px';
-            root.style.height = window.innerHeight + 'px';
-            root.style.transformOrigin = 'center center';
-            root.style.transform = 'translate(-50%,-50%) rotate(180deg)';
-
-          } else {
-            console.log('No rotation or unsupported rotation:', degrees);
-            // Restore default positioning
-            root.style.position = '';
-            root.style.top = '';
-            root.style.left = '';
-            root.style.width = '';
-            root.style.height = '';
-            root.style.margin = '';
-            root.style.padding = '';
-            root.style.transform = '';
-            root.style.transformOrigin = '';
+        const viewportValue = getParam('viewport');
+        if (viewportValue === '1920x1080' || viewportValue === '1920') {
+          var meta = document.querySelector('meta[name="viewport"]');
+          if (meta) {
+            meta.setAttribute('content', 'width=1920, height=1080');
+            console.log('Meta viewport overridden to width=1920, height=1080 due to viewport param');
           }
         }
       });
     </script>
-    <script type="module" crossorigin src="/flightdemo2/static/index-lJ9TsRMT.js"></script>
-    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-CVk4mznI.css">
+    <script type="module" crossorigin src="/flightdemo2/static/index-C8eSlUQX.js"></script>
+    <link rel="stylesheet" crossorigin href="/flightdemo2/static/index-DNEY4u0G.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
