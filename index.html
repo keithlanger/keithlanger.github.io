@@ -301,9 +301,14 @@
           Everything here is a personal project, designed and built end to end, mostly as a
           way to test ideas and try tools on something more substantial than a tutorial.
         </p>
-        <a class="email-link" href="mailto:keith.langer@gmail.com">
-          <i class="fas fa-envelope"></i> keith.langer@gmail.com
-        </a>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button class="email-link" id="copyEmail" style="background: none; border: 1px solid var(--border-bright); cursor: pointer;">
+            <i class="fas fa-envelope"></i> <span id="emailText">keith.langer@gmail.com</span>
+          </button>
+          <a class="email-link" href="https://www.linkedin.com/in/keith-langer-37489143/" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
       </div>
 
       <div class="footer">
@@ -342,6 +347,22 @@
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
+
+    /* ---------- Copy email to clipboard ---------- */
+    var copyEmail = document.getElementById('copyEmail');
+    var emailText = document.getElementById('emailText');
+
+    if (copyEmail && navigator.clipboard) {
+      copyEmail.addEventListener('click', function () {
+        navigator.clipboard.writeText('keith.langer@gmail.com').then(function () {
+          var original = emailText.textContent;
+          emailText.textContent = 'Copied!';
+          setTimeout(function () {
+            emailText.textContent = original;
+          }, 2000);
+        });
+      });
+    }
 
     /* ---------- Mobile menu ---------- */
     var navToggle = document.getElementById('navToggle');
