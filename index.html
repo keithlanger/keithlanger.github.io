@@ -88,20 +88,14 @@
         </p>
       </div>
 
-      <div class="controls reveal">
-        <div class="search-wrap">
-          <i class="fas fa-search"></i>
-          <input type="text" id="search" placeholder="Search projects…" autocomplete="off">
-        </div>
-        <div class="filters" id="filters">
-          <button class="chip active" data-filter="all">All</button>
-          <button class="chip" data-filter="aviation">Aviation &amp; Transit</button>
-          <button class="chip" data-filter="commerce">Commerce</button>
-          <button class="chip" data-filter="media">Media &amp; Social</button>
-          <button class="chip" data-filter="enterprise">Enterprise Ops</button>
-          <button class="chip" data-filter="concept">Speculative</button>
-          <button class="chip" data-filter="ui">UI Foundations</button>
-        </div>
+      <div class="filters reveal" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="aviation">Aviation &amp; Transit</button>
+        <button class="chip" data-filter="commerce">Commerce</button>
+        <button class="chip" data-filter="media">Media &amp; Social</button>
+        <button class="chip" data-filter="enterprise">Enterprise Ops</button>
+        <button class="chip" data-filter="concept">Speculative</button>
+        <button class="chip" data-filter="ui">UI Foundations</button>
       </div>
 
       <div class="grid" id="grid">
@@ -461,9 +455,8 @@
       });
     }
 
-    /* ---------- Filter + search ---------- */
+    /* ---------- Filter by category ---------- */
     var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
-    var search = document.getElementById('search');
     var empty = document.getElementById('empty');
     var activeFilter = 'all';
 
@@ -479,19 +472,11 @@
     });
 
     function applyFilters() {
-      var q = search.value.trim().toLowerCase();
       var shown = 0;
 
       cards.forEach(function (card) {
         var cats = card.getAttribute('data-cat').split(' ');
-        var haystack = (
-          card.querySelector('h3').textContent + ' ' +
-          card.getAttribute('data-name')
-        ).toLowerCase();
-
-        var matchCat = activeFilter === 'all' || cats.indexOf(activeFilter) !== -1;
-        var matchText = !q || haystack.indexOf(q) !== -1;
-        var show = matchCat && matchText;
+        var show = activeFilter === 'all' || cats.indexOf(activeFilter) !== -1;
 
         card.classList.toggle('hidden', !show);
         if (show) shown++;
@@ -508,8 +493,6 @@
         applyFilters();
       });
     });
-
-    search.addEventListener('input', applyFilters);
   })();
   </script>
 </body>
