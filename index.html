@@ -303,7 +303,7 @@
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           <button class="email-link" id="copyEmail" style="background: none; border: 1px solid var(--border-bright); cursor: pointer;">
-            <i class="fas fa-envelope"></i> <span id="emailText">keith.langer@gmail.com</span>
+            <i class="fas fa-envelope"></i> <span id="emailText">Email</span>
           </button>
           <a class="email-link" href="https://www.linkedin.com/in/keith-langer-37489143/" target="_blank" rel="noopener">
             <i class="fab fa-linkedin"></i> LinkedIn
@@ -354,11 +354,11 @@
 
     if (copyEmail && navigator.clipboard) {
       copyEmail.addEventListener('click', function () {
-        navigator.clipboard.writeText('keith.langer@gmail.com').then(function () {
-          var original = emailText.textContent;
+        var addr = ['keith.langer', String.fromCharCode(64), 'gmail.com'].join('');
+        navigator.clipboard.writeText(addr).then(function () {
           emailText.textContent = 'Copied!';
           setTimeout(function () {
-            emailText.textContent = original;
+            emailText.textContent = 'Email';
           }, 2000);
         });
       });
