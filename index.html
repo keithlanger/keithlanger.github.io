@@ -34,6 +34,7 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#work">Work</a></li>
+        <li><a href="#ai">AI</a></li>
         <li><a href="#contact">About</a></li>
       </ul>
     </div>
@@ -63,7 +64,7 @@
 
       <div class="stats reveal">
         <div class="stat">
-          <div class="stat-num" data-count="20">0</div>
+          <div class="stat-num" data-count="21">0</div>
           <div class="stat-label">Demo Apps</div>
         </div>
         <div class="stat">
@@ -296,6 +297,27 @@
     </div>
   </section>
 
+  <!-- ============ AI ============ -->
+  <section class="section" id="ai">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">AI</span>
+        <h2>AI demos</h2>
+        <p>Interactive experiments with AI-powered applications.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card reveal" data-name="ragdemo rag retrieval augmented generation dinosaur park">
+          <div class="card-icon"><i class="fas fa-brain"></i></div>
+          <h3>Dinosaur Park RAG Demo</h3>
+          <p>Ask questions about a fictional park with real dinosaurs using a live retrieval-augmented generation server.</p>
+          <div class="tags"><span class="tag">AI</span><span class="tag">RAG</span><span class="tag">Live Server</span></div>
+          <a class="card-link" href="ragdemo/" target="_blank" rel="noopener">Try the Demo <i class="fas fa-arrow-right"></i></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ABOUT / CONTACT ============ -->
   <section class="section" id="about">
     <div class="container">
@@ -474,7 +496,7 @@
     }
 
     /* ---------- Card spotlight ---------- */
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
 
     if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
       cards.forEach(function (card) {
