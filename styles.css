@@ -239,7 +239,7 @@ body {
 .hero h1 {
   font-size: clamp(2.6rem, 7vw, 4.6rem);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: -0.035em;
   margin-bottom: 1.4rem;
 }
@@ -260,11 +260,13 @@ body {
 
 .hero-rotator {
   display: inline-block;
+  max-width: 100%;
   min-width: 1ch;
 }
 
 .hero-rotator .word {
   display: inline-block;
+  max-width: 100%;
   transition: opacity 0.35s ease, transform 0.35s var(--ease);
 }
 
