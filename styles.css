@@ -384,6 +384,25 @@ body {
   max-width: 620px;
 }
 
+.ai-notice {
+  max-width: 760px;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-bright);
+  border-radius: 12px;
+  background: rgba(88, 166, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+.ai-notice p + p {
+  margin-top: 0.5rem;
+}
+
+.ai-notice a {
+  color: var(--accent-hover);
+  text-underline-offset: 3px;
+}
+
 /* ---------- Filters ---------- */
 
 .filters {
