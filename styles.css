@@ -398,9 +398,18 @@ body {
   margin-top: 0.5rem;
 }
 
-.ai-notice a {
+.ai-copy-email {
+  border: 0;
+  background: none;
   color: var(--accent-hover);
+  font: inherit;
+  text-decoration: underline;
   text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.ai-copy-email:hover {
+  color: var(--text-primary);
 }
 
 /* ---------- Filters ---------- */

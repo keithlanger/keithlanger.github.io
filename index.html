@@ -82,7 +82,7 @@
         <span class="eyebrow">AI</span>
         <h2>AI demos</h2>
         <div class="ai-notice">
-          <p>These demos require an invite code. <a href="#contact">Copy my email address</a> to request an invite code.</p>
+          <p>The AI demos require an invite code. <button type="button" class="ai-copy-email" id="copyAiEmail"><span id="aiEmailText">Copy my email address</span></button> to request an invite code.</p>
         </div>
       </div>
 
@@ -430,20 +430,25 @@
     });
 
     /* ---------- Copy email to clipboard ---------- */
-    var copyEmail = document.getElementById('copyEmail');
-    var emailText = document.getElementById('emailText');
+    function setupEmailCopy(buttonId, textId, defaultText) {
+      var button = document.getElementById(buttonId);
+      var text = document.getElementById(textId);
 
-    if (copyEmail && navigator.clipboard) {
-      copyEmail.addEventListener('click', function () {
-        var addr = ['keith.langer', String.fromCharCode(64), 'gmail.com'].join('');
-        navigator.clipboard.writeText(addr).then(function () {
-          emailText.textContent = 'Copied!';
-          setTimeout(function () {
-            emailText.textContent = 'Email';
-          }, 2000);
+      if (button && text && navigator.clipboard) {
+        button.addEventListener('click', function () {
+          var addr = ['keith.langer', String.fromCharCode(64), 'gmail.com'].join('');
+          navigator.clipboard.writeText(addr).then(function () {
+            text.textContent = 'Copied!';
+            setTimeout(function () {
+              text.textContent = defaultText;
+            }, 2000);
+          });
         });
-      });
+      }
     }
+
+    setupEmailCopy('copyEmail', 'emailText', 'Email');
+    setupEmailCopy('copyAiEmail', 'aiEmailText', 'Copy my email address');
 
     /* ---------- Mobile menu ---------- */
     var navToggle = document.getElementById('navToggle');
