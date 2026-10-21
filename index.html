@@ -64,7 +64,7 @@
 
       <div class="stats reveal">
         <div class="stat">
-          <div class="stat-num" data-count="30">0</div>
+          <div class="stat-num" data-count-source="#ai .card, #grid .card">0</div>
           <div class="stat-label">Demo Apps</div>
         </div>
         <div class="stat">
@@ -548,10 +548,13 @@
     }
 
     /* ---------- Animated stat counters ---------- */
-    var counters = document.querySelectorAll('[data-count]');
+    var counters = document.querySelectorAll('[data-count], [data-count-source]');
 
     function runCounter(el) {
-      var target = parseInt(el.getAttribute('data-count'), 10);
+      var source = el.getAttribute('data-count-source');
+      var target = source
+        ? document.querySelectorAll(source).length
+        : parseInt(el.getAttribute('data-count'), 10);
       var suffix = el.getAttribute('data-suffix') || '';
 
       if (reduceMotion) {
