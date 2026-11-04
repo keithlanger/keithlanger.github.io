@@ -578,6 +578,31 @@ body {
   color: var(--accent-hover);
 }
 
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: auto;
+}
+
+.card-actions .card-link {
+  position: relative;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border-bright);
+  border-radius: 8px;
+  background: var(--bg-tertiary);
+  font-size: 0.84rem;
+}
+
+.card-actions .card-link::after {
+  content: none;
+}
+
+.card-actions .card-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* stretch link over whole card */
 .card-link::after {
   content: '';
